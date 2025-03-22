@@ -1,16 +1,26 @@
 const express = require("express");
-const { registerUser, loginUser, getUserProfile } = require("../controllers/userController");
+const { 
+  registerUser, 
+  loginUser, 
+  getUserProfile, 
+  updateUserProfile, 
+  getAllUsers, 
+  deleteUser 
+} = require("../controllers/userController");
 const { protect, authorizeRoles } = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
+// Public Routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/profile", protect, getUserProfile);
 
-// Example: Admin-only route
-router.get("/admin", protect, authorizeRoles("admin"), (req, res) => {
-  res.json({ message: "Welcome, Admin!" });
-});
+// User Routes (Protected)
+router.get("/profile", protect, getUserProfile);
+router.put("/profile", protect, updateUserProfile);
+
+// Admin Routes (Protected + Admin Only)
+router.get("/users", protect, authorizeRoles("admin"), getAllUsers);
+router.delete("/user/:id", protect, authorizeRoles("admin"), deleteUser);
 
 module.exports = router;

@@ -1,73 +1,106 @@
 const Event = require("../models/eventModel");
+const Venue = require("../models/venueModel");
 
-// Create a new event
+// @desc    Create a new event
+// @route   POST /api/events
+// @access  Admin
 const createEvent = async (req, res) => {
   try {
-    const { name, date, location, description } = req.body;
-    const event = new Event({ name, date, location, description });
-    await event.save();
+    const { name, description, date, venueId } = req.body;
+
+    const venue = await Venue.findById(venueId);
+    if (!venue) {
+      return res.status(404).json({ message: "Venue not found" });
+    }
+
+    const event = await Event.create({
+      name,
+      description,
+      date,
+      venue: venueId,
+      createdBy: req.user.id,
+    });
+
     res.status(201).json(event);
   } catch (error) {
-    res.status(500).json({ message: "Error creating event", error });
+    res.status(500).json({ message: "Error creating event", error: error.message });
   }
 };
 
-// Get all events
-const getEvents = async (req, res) => {
+// @desc    Get all events
+// @route   GET /api/events
+// @access  Public
+const getAllEvents = async (req, res) => {
   try {
-    const events = await Event.find();
-    res.status(200).json(events);
+    const events = await Event.find().populate("venue", "name location");
+    res.json(events);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching events", error });
+    res.status(500).json({ message: "Error fetching events", error: error.message });
   }
 };
 
-// Get single event by ID
+// @desc    Get a single event
+// @route   GET /api/events/:id
+// @access  Public
 const getEventById = async (req, res) => {
   try {
+    const event = await Event.findById(req.params.id).populate("venue", "name location");
+    if (!event) return res.status(404).json({ message: "Event not found" });
+
+    res.json(event);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching event", error: error.message });
+  }
+};
+
+// @desc    Update an event
+// @route   PUT /api/events/:id
+// @access  Admin
+const updateEvent = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res.status(403).json({ message: "Access denied. Admins only." });
+    }
+
+    const { name, description, date, venueId } = req.body;
+
     const event = await Event.findById(req.params.id);
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }
-    res.status(200).json(event);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching event", error });
-  }
-};
 
-// Update an event
-const updateEvent = async (req, res) => {
-  try {
-    const { name, date, location, description } = req.body;
-    const event = await Event.findByIdAndUpdate(
-      req.params.id,
-      { name, date, location, description },
-      { new: true } // Return the updated document
-    );
-
-    if (!event) {
-      return res.status(404).json({ message: "Event not found" });
+    if (venueId) {
+      const venue = await Venue.findById(venueId);
+      if (!venue) {
+        return res.status(404).json({ message: "Venue not found" });
+      }
+      event.venue = venueId;
     }
 
-    res.status(200).json(event);
+    event.name = name || event.name;
+    event.description = description || event.description;
+    event.date = date || event.date;
+
+    const updatedEvent = await event.save();
+    res.json(updatedEvent);
   } catch (error) {
-    res.status(500).json({ message: "Error updating event", error });
+    res.status(500).json({ message: "Error updating event", error: error.message });
   }
 };
 
-// Delete an event
+// @desc    Delete an event
+// @route   DELETE /api/events/:id
+// @access  Admin
 const deleteEvent = async (req, res) => {
   try {
-    const event = await Event.findByIdAndDelete(req.params.id);
+    const event = await Event.findById(req.params.id);
+    if (!event) return res.status(404).json({ message: "Event not found" });
 
-    if (!event) {
-      return res.status(404).json({ message: "Event not found" });
-    }
-
-    res.status(200).json({ message: "Event deleted successfully" });
+    await event.deleteOne();
+    res.json({ message: "Event deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Error deleting event", error });
+    res.status(500).json({ message: "Error deleting event", error: error.message });
   }
 };
 
-module.exports = { createEvent, getEvents, getEventById, updateEvent, deleteEvent };
+module.exports = { createEvent, getAllEvents, getEventById, updateEvent, deleteEvent };

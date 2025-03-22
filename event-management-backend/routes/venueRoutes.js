@@ -1,17 +1,20 @@
 const express = require("express");
-const router = express.Router();
+const { protect, authorizeRoles } = require("../middlewares/authMiddleware");
 const {
   createVenue,
-  getVenues,
+  getAllVenues,
   getVenueById,
   updateVenue,
   deleteVenue,
-} = require("../controllers/venueController"); // ✅ Ensure correct path and functions
+} = require("../controllers/venueController");
 
-router.post("/", createVenue);
-router.get("/", getVenues);
+const router = express.Router();
+
+// Routes
+router.post("/", protect, authorizeRoles("admin"), createVenue);
+router.get("/", getAllVenues);
 router.get("/:id", getVenueById);
-router.put("/:id", updateVenue);  // ✅ Ensure updateVenue exists
-router.delete("/:id", deleteVenue);  // ✅ Ensure deleteVenue exists
+router.put("/:id", protect, authorizeRoles("admin"), updateVenue);
+router.delete("/:id", protect, authorizeRoles("admin"), deleteVenue);
 
 module.exports = router;
