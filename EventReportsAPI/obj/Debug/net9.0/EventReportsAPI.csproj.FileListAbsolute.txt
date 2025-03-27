@@ -1,0 +1,8 @@
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.csproj.AssemblyReference.cache
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.GeneratedMSBuildEditorConfig.editorconfig
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.AssemblyInfoInputs.cache
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.AssemblyInfo.cs
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.csproj.CoreCompileInputs.cache
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.MvcApplicationPartsAssemblyInfo.cs
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.MvcApplicationPartsAssemblyInfo.cache
+/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/obj/Debug/net9.0/EventReportsAPI.sourcelink.json

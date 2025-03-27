@@ -7,8 +7,14 @@ const EventsPage = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/events");
-      setEvents(data);
+      try {
+        const { data } = await axios.get("http://localhost:5000/api/events");
+
+        setEvents(data);
+      }
+      catch {
+        //handle error
+      }
     };
     fetchEvents();
   }, []);
