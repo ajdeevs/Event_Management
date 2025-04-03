@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ZC+ETOq1yHqV7FZ7xAwQILr1ejTxKfDbFbFxTKWS86s=",
+  "Source": "EventReportsAPI",
+  "BasePath": "_content/EventReportsAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

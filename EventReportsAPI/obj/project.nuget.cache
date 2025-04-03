@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CLXxE8kmvTU=",
+  "dgSpecHash": "/NoxcPCTeHo=",
   "success": true,
   "projectFilePath": "/home/ajdevs/coding/projects/WEB3/Event_Management/EventReportsAPI/EventReportsAPI.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "/home/ajdevs/.nuget/packages/microsoft.entityframeworkcore.sqlserver/9.0.3/microsoft.entityframeworkcore.sqlserver.9.0.3.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.3/microsoft.extensions.caching.abstractions.9.0.3.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/microsoft.extensions.caching.memory/9.0.3/microsoft.extensions.caching.memory.9.0.3.nupkg.sha512",
+    "/home/ajdevs/.nuget/packages/microsoft.extensions.caching.stackexchangeredis/9.0.2/microsoft.extensions.caching.stackexchangeredis.9.0.2.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.3/microsoft.extensions.configuration.abstractions.9.0.3.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.3/microsoft.extensions.dependencyinjection.9.0.3.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.3/microsoft.extensions.dependencyinjection.abstractions.9.0.3.nupkg.sha512",
@@ -53,6 +54,8 @@
     "/home/ajdevs/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/newtonsoft.json/11.0.1/newtonsoft.json.11.0.1.nupkg.sha512",
+    "/home/ajdevs/.nuget/packages/npgsql/9.0.3/npgsql.9.0.3.nupkg.sha512",
+    "/home/ajdevs/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.4/npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/pipelines.sockets.unofficial/2.2.8/pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/rabbitmq.client/7.1.2/rabbitmq.client.7.1.2.nupkg.sha512",
     "/home/ajdevs/.nuget/packages/stackexchange.redis/2.8.31/stackexchange.redis.2.8.31.nupkg.sha512",
