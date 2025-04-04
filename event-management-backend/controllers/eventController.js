@@ -6,7 +6,7 @@ const Venue = require("../models/venueModel");
 // @access  Admin
 const createEvent = async (req, res) => {
   try {
-    const { name, description, date, venueId } = req.body;
+    const { title, date, organizer, time, venueId } = req.body;
 
     const venue = await Venue.findById(venueId);
     if (!venue) {
@@ -14,9 +14,10 @@ const createEvent = async (req, res) => {
     }
 
     const event = await Event.create({
-      name,
-      description,
+      title,
       date,
+      organizer,
+      time,
       venue: venueId,
       createdBy: req.user.id,
     });
@@ -30,7 +31,7 @@ const createEvent = async (req, res) => {
 // @desc    Get all events
 // @route   GET /api/events
 // @access  Public
-const getAllEvents = async (req, res) => {
+const getAllEvents = async (_req, res) => {
   try {
     const events = await Event.find().populate("venue", "name location");
     res.json(events);
